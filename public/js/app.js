@@ -1,21 +1,24 @@
+require.config({
+  hbt: {
+    extension: 'html'
+  }
+});
+
 define(function(require){
   var
     // 3rd Party Dependencies
-    domReady = require('domReady')
+    domReady  = require('domReady')
 
     // App Dependencies
-  , hand = require('hand')
-    // Views    = require('views')
+  , hand      = require('hand')
+  , Views     = require('views')
 
     // Module Variables
-  , app = {
-      addNote: function(note){
-        note || (note = new Note());
-      }
-    }
+    app       = {}
   ;
   domReady(function(){
-
+    app.notes = new Views.NoteBook({ el: document.body });
+    app.notes.add(new Views.Note())
   });
 
   return app;

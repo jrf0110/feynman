@@ -8,15 +8,14 @@ define(function(require){
     // App Dependencies
 
     // Module Variables
-  , utils     = {}
   ;
 
-  utils.dom = $;
+  utils.dom    = $;
 
   utils.Events = Backbone.Events;
   utils.Router = Backbone.Router;
 
-  utils.mvc = {
+  utils.Mvc = {
     Model: Backbone.Model
   , View: Backbone.View
   , Collection: Backbone.Collection
@@ -24,5 +23,8 @@ define(function(require){
 
   utils = _.extend(utils, _);
 
-  return utils;
+  return _.extend({
+    dom: $
+  , Events: Backbone.Events
+  }, _);
 });
