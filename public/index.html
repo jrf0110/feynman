@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/ligature.css">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0,0,0, 0.6);
+        font-family: "ff-tisa-web-pro";
+      }
+      .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: 50%;
+        background-image: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* FF3.6+ */
+        background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.25))), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* Chrome,Safari4+ */
+        background-image: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* Chrome10+,Safari5.1+ */
+        background-image: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* Opera 12+ */
+        background-image: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* IE10+ */
+        background-image: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* W3C */
+        -moz-filter: blur(1px);
+        -webkit-filter: blur(1px);
+        filter: blur(1px);
+        /*-moz-transition: all 0.4s linear;
+        -webkit-transition: all 0.4s linear;
+        transition: all 0.4s linear;*/
+      }
+      .background.editing {
+        -moz-filter: blur(3px);
+        -webkit-filter: blur(3px);
+        filter: blur(3px);
+        background-image: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* FF3.6+ */
+        background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* Chrome,Safari4+ */
+        background-image: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* Chrome10+,Safari5.1+ */
+        background-image: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* Opera 12+ */
+        background-image: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* IE10+ */
+        background-image: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%), url('http://farm8.staticflickr.com/7250/7794784006_bb2578241e_k.jpg'); /* W3C */
+      }
+
+      .note {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        padding: 20px 16px;
+        width: 600px;
+        background-color: rgba(0,0,0, 0.25);
+        box-shadow: 0 0 15px rgba(0,0,0, 0.2);
+        font-size: 3rem;
+        line-height: 4.1rem;
+        cursor: move;
+        /*-moz-transition: all 0.5 linear;
+        -webkit-transition: all 0.5 linear;
+        transition: all 0.5 linear;*/
+      }
+      .note.dragging {
+        opacity: 0.8;
+        -moz-filter: blur(1px);
+        -webkit-filter: blur(1px);
+        filter: blur(1px);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .note > .actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-align: right;
+        line-height: 0;
+        opacity: 0.3;
+        cursor: pointer;
+        -moz-transition: opacity 0.4s linear;
+        -webkit-transition: opacity 0.4s linear;
+        transition: opacity 0.4s linear;
+      }
+      .note > .actions:hover {
+        opacity: 0.8;
+      }
+      .note > .actions > .action {
+        display: inline-block;
+        padding: 4px;
+        background-color: rgba(0,0,0, 0.1);
+        font-size: 1rem;
+        line-height: 1rem;
+        text-align: center;
+      }
+      .note > .actions > .edit {
+        padding: 4px 0 4px 8px;
+      }
+      .note > .content {
+        text-align: left;
+        padding: 14px;
+        outline: 0;
+        border: dashed 0 rgba(0,0,0, 0.4);
+        cursor: default;
+      }
+      .note > .content.editing {
+        padding: 9px;
+        border-width: 5px;
+      }
+    </style>
+    <script type="text/javascript" src="//use.typekit.net/xvb5kbx.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script data-main="js/app" src="js/jam/require.js"></script>
+    <script type="text/javascript">
+      (function(){
+        window.utils = {};
+        var classMatch = "(?:^|\\s){class}(?!\\S)";
+        utils.addClass = function(el, className){
+          var r = new RegExp(classMatch.replace('{class}', className));
+          if (!!el.className.match(r)) return;
+          el.className += " " + className;
+        };
+        utils.removeClass = function(el, className){
+          var r = new RegExp(classMatch.replace('{class}', className));
+          el.className = el.className.replace(r, '');
+        };
+        utils.hasClass = function(el, className){
+          var r = new RegExp(classMatch.replace('{class}', className));
+          return !!el.className.match(r);
+        };
+        utils.translate = function(el, x, y){
+          el.style.webkitTransform = "translate(" + x  + "," + y + ")";
+          // el.style.left = x;
+          // el.style.top = y;
+        };
+      })();
+
+      document.addEventListener("DOMContentLoaded", function(){
+        var ___
+        , bg = document.getElementById('background')
+        , draggingEl = false
+        , edit = function(myNote){
+            var ___
+            , editIcon = myNote.querySelector('.edit')
+            , content  = myNote.querySelector('.content')
+            ;
+            if (editIcon.title === "edit"){
+              editIcon.title = "checkbox";
+              content.contentEditable = true;
+              content.focus();
+              utils.addClass(content, 'editing');
+              utils.addClass(background, 'editing');
+            }else{
+              editIcon.title = "edit";
+              content.contentEditable = false;
+              utils.removeClass(content, 'editing');
+              utils.removeClass(background, 'editing');
+            }
+          }
+        ;
+        // Put events on notes
+        Array.prototype.slice.call(document.querySelectorAll('.note')).forEach(function(note){
+          // NativeDrag - contenteditable collision!
+          //
+          // note.addEventListener('dragstart', function(e){
+          //   e.preventDefault();
+          //   utils.addClass(note, 'dragging');
+          // });
+          // note.addEventListener('dragend', function(e){
+          //   // e.preventDefault();
+          //   utils.removeClass(note, 'dragging');
+          //   utils.translate(note, e.x + "px", e.y + "px");
+          //   console.log(e);
+          // });
+
+          note.addEventListener('mousedown', function(){
+            draggingEl = note;
+            utils.addClass(draggingEl, 'dragging');
+          });
+          window.addEventListener('mouseup', function(){
+            utils.removeClass(draggingEl, 'dragging');
+            draggingEl = false;
+          });
+          window.addEventListener('mousemove', function(e){
+            if (draggingEl){
+              utils.translate(draggingEl, e.clientX + "px", e.clientY + "px");
+            }
+          });
+
+          // Edit
+          note.querySelector('.edit').addEventListener('click', function(e){
+            edit(note);
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="note" id="note1">
+      <div class="actions">
+        <div class="action edit lsf-icon" title="edit"></div>
+      </div>
+      <div class="content">Click the edit button in the top right :)</div>
+    </div>
+    <div class="note" id="note2">
+      <div class="actions">
+        <div class="action edit lsf-icon" title="edit"></div>
+      </div>
+      <div class="content">Click the edit button in the top right :)</div>
+    </div>
+    <div class="background" id="background"></div>
+  </body>
+</html>
