@@ -5,5 +5,5 @@ cluster.sock
 .DS_Store
 *.sublime-project
 *.sublime-workspace
-publix/js/jam/*
-!publix/js/jam/jam.json
+public/js/jam/*
+!public/js/jam/jam.json
