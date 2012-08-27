@@ -3,28 +3,25 @@ define(function(require){
     // 3rd Party Dependencies
     $         = require('jquery')
   , _         = require('underscore')
-  , amanda    = require('amanda')
+  , Backbone  = require('backbone')
 
     // App Dependencies
 
     // Module Variables
+    utils = {}
   ;
+  require('backbone-localStorage');
 
-  utils.dom    = $;
+  utils.dom = $;
 
-  utils.Events = Backbone.Events;
-  utils.Router = Backbone.Router;
-
-  utils.Mvc = {
-    Model: Backbone.Model
-  , View: Backbone.View
-  , Collection: Backbone.Collection
-  };
+  utils.Events        = Backbone.Events;
+  utils.Router        = Backbone.Router;
+  utils.Model         = Backbone.Model;
+  utils.View          = Backbone.View;
+  utils.Collection    = Backbone.Collection;
+  utils.LocalStorage  = Backbone.LocalStorage;
 
   utils = _.extend(utils, _);
 
-  return _.extend({
-    dom: $
-  , Events: Backbone.Events
-  }, _);
+  return utils;
 });

@@ -7,18 +7,22 @@ require.config({
 define(function(require){
   var
     // 3rd Party Dependencies
-    domReady  = require('domReady')
+    domready    = require('domReady')
 
     // App Dependencies
-  , hand      = require('hand')
-  , Views     = require('views')
+  , hand        = require('hand')
+  , Views       = require('views')
+  , Models      = require('models')
+  , Collections = require('collections')
 
     // Module Variables
-    app       = {}
+    app         = {}
   ;
-  domReady(function(){
-    app.notes = new Views.NoteBook({ el: document.body });
-    app.notes.add(new Views.Note())
+  domready(function(){
+    app.notes = new Views.NoteBook({
+      el: document.body
+    , collection: new Collections.Notes()
+    });
   });
 
   return app;

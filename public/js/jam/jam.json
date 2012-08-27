@@ -2,6 +2,8 @@
     "jam_version": "0.1.11",
     "dependencies": {
         "backbone": null,
-        "hbt": null
+        "hbt": null,
+        "domReady": null,
+        "backbone-localStorage": null
     }
 }
