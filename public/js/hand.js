@@ -67,7 +67,7 @@ define(function(require){
     , translateElements: function(x, y){
         for (var i = size - 1, el; i >= 0; i--) {
           el = els["el" + i];
-          el.$el.css('transform', 'translate(' + (x - el.offsetX) + 'px,' + (y - el.offsetY) + 'px)');
+          el.$el.css('transform', 'translate3d(' + (x - el.offsetX) + 'px,' + (y - el.offsetY) + 'px, 0)');
         };
       }
     , onMouseMove: function(e){

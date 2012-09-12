@@ -26,7 +26,7 @@ define(function(require){
     }
   , render: function(){
       this.$el.css({
-        'transform': 'translate(' + this.model.get('x') + 'px,' + this.model.get('y') + 'px)'
+        'transform': 'translate3d(' + this.model.get('x') + 'px,' + this.model.get('y') + 'px, 0)'
       });
       this.$el.html(this.template(this.model.toJSON()));
       this.$editIcon = this.$el.find('.edit');
